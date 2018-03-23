@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Show User</title>
+</head>
+
+<body>
+	<a href="{% url 'dashboard' %}">Dashboard</a>
+	<a href="{% url 'logout' %}">Log out</a>
+
+<!-- GET THE USER PASSED BY THE PARAMETER (VIEWS.PY => SHOW_USER METHOD) // THE KEY WORD IN THE CONTEXT DICTIONARY -->
+	<h3>Posts by: {{ user.name }}</h3>
+	
+<!-- GET THE COUNT PASSED BY THE PARAMETER (VIEWS.PY => SHOW_USER METHOD) // THE KEY WORD IN THE CONTEXT DICTIONARY -->	
+<h3>Count: {{count}}</h3>
+
+<!-- ======================================================================================================== -->
+<!--                                         QUOTES   FOR LOOP                                                -->
+<!-- ======================================================================================================== -->
+<!-- THE QUOTE PASSED THROUGH THE PARAMETER (VIEWS.PY => SHOW_USER METHOD) IS BEING USED HERE FOR THE LOOP THE KEY WORD IN THE CONTEXT DICTIONARY -->
+	{% for quote in quotes %}
+	<hr>
+	<p>{{quote.quoted_by}}</p>
+	<p>{{quote.message}}</p>
+	{% endfor %}
+
+</body>
+
+</html>
