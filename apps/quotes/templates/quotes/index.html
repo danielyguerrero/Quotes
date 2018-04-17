@@ -35,8 +35,8 @@
 <!--                                            QUOTABLE QUOTES                                      -->
 <!--=================================================================================================-->
         <div class="topdiv">
-            <h3>Quotable Quotes</h3>
-    
+            <h3 id="quoteh3">Quotable Quotes</h3>
+
             <!-- FOR EVERY QUOTE IN QUOTES -->
             {% for quote in quotes %}
 
@@ -78,6 +78,7 @@
                 <button type="submit">Remove from Favorites</button>
             </form>
         {% endfor %}
+        </div>
 <!--=================================================================================================-->
 <!--                                 CONTRIBUTE A QUOTE                                              -->
 <!--=================================================================================================-->
@@ -101,7 +102,6 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
     </div>
     </div>
 </body>
