@@ -1,0 +1,63 @@
+h1 {
+	margin: 0px;
+}
+h5{
+	color: red;
+}
+.wrapper{
+	background-color: #62b1f7;
+
+}
+.container{
+	margin-top: 35px;
+	padding-top: 20px;
+	text-align: center;
+}
+.topdiv{
+	border: 10px solid rgba(33, 33, 228, 0.6);
+	display: inline-block;
+	width: 430px;
+	height: auto;
+	text-align: center;
+	padding: 10px;
+}
+.favquotes{
+	border: 10px solid rgba(33, 33, 228, 0.6);
+	display: inline-block;
+	width: 430px;
+	height: auto;
+	margin-left: 40px;
+	vertical-align: top;
+	text-align: center;
+	padding: 10px;
+}
+.errors{
+	display: inline-block;
+	height: auto;
+	width: auto;
+}
+.create{
+	border: 10px solid rgba(34, 255, 226, 0.6);
+	display: inline-block;
+	width: 390px;
+	height: 400px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.myform{
+	text-align: left;
+}
+textarea {
+  width: 260px;
+  height: 200px;
+  vertical-align: top;
+}
+.create * {
+    margin: 5px;
+}
+button{
+	margin-top: 15px;
+	margin-right: 45px;
+	float: right;
+}

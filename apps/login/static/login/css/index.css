@@ -1,0 +1,22 @@
+body {
+	background-color: #cbcbcb;
+	text-align: center;
+}
+h1{
+	margin-bottom: 40px;
+}
+.lform{
+	height: 400px;
+	width: 300px;
+	display: inline-block;
+	border: 10px solid rgba(74, 154, 223, 0.6);
+
+}
+.rform{
+	height: 400px;
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
+	border: 10px solid rgba(74, 154, 223, 0.6);
+	margin-left: 130px;
+}
