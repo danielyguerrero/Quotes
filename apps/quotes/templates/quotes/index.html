@@ -2,6 +2,7 @@
 
 <head>
     <title>Quotes Page</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load staticfiles %}
     <!-- Bootstrap -->
@@ -16,23 +17,23 @@
     <!-- CSS Link -->
     <link rel="stylesheet" href="{% static 'quotes/css/index.css' %}" charset="utf-8"  />
     <!-- jQuery Link -->
-    <script src="{% static "quotes/js/about.js" %}"></script>
+    <script src="{% static "quotes/js/index.js" %}"></script>
 </head>
 
 <body>
 <!-- ===============    NAVBAR    ===================== -->
 
-   <div class="topnav">
+    <div class="topnav" id="myTopnav">
 
-    <a class="navbar-brand"><h4>Welcome, {{ user.name }}!</h4></a>
-    
-    <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+        <a class="navbar-brand" class="active"><h3 class="navbar-brand" class="active">Welcome, {{ user.name }}!</h3></a>
 
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
 
-   </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 
-<div class="wrapper">
+    </div>
+
+    <div class="wrapper">
 
 
 <!--=================================================================================================-->
