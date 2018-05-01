@@ -17,20 +17,15 @@
 </head>
 
 <body>
+<!-- ===============    NAVBAR    ===================== -->
+   <div class="topnav" id="myTopnav">
+    <a class="navbar-brand"><h1>Welcome, {{ user.name }}!</h1></a>
+    <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction(
+     <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+     )">&#9776;</a>
+  </div>
     <div class="wrapper">
-<!-- ===================    NAVBAR    ===================-->
-         <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand"><h1>Welcome, {{ user.name }}!</h1></a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
-                </ul>
-            </div>
-        </nav> 
-
-    <div class="container">
 <!--=================================================================================================-->
 <!--                                            QUOTABLE QUOTES                                      -->
 <!--=================================================================================================-->
@@ -102,7 +97,6 @@
                     {% endif %}
                 </div>
             </div>
-    </div>
     </div>
 </body>
 </html>
