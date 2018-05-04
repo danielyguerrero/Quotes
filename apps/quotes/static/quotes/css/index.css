@@ -83,6 +83,7 @@ h3{
 	height: auto;
 	text-align: center;
 	padding: 10px;
+	margin-top: 10px;
 }
 #quoteh3{
 	border-bottom: 1px solid white;
@@ -97,6 +98,7 @@ h3{
 	vertical-align: top;
 	text-align: center;
 	padding: 10px;
+	margin-top: 10px;
 }
 .create{
 	width: 100%;

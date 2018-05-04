@@ -16,14 +16,14 @@ h5{
 }
 
 .wrapper{
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: auto;
 	background: linear-gradient(#a7f1ff, #9080ff);
 	padding: 15px;
 }
 .centerdiv{
 	height:auto;
-	width: auto;
+	width: 100%;
 	max-width: 400px;
 	margin-left: auto;
 	margin-right: auto;
