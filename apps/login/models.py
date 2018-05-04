@@ -41,8 +41,8 @@ class UserManager(models.Manager):
             if bcrypt.checkpw(user_password, db_password):
                 return {'user': user}
 
-            errors.append("Invalid Password")
-        errors.append("Account does not exist")
+            
+        errors.append("Email or Password incorrect")
 
         return {'errors': errors}
 
