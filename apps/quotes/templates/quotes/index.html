@@ -1,112 +1,93 @@
 <html>
-
-<head>
-    <title>Quotes Page</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load staticfiles %}
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="{% static 'quotes/css/index.css' %}" charset="utf-8"  />
-    <!-- jQuery Link -->
-    <script src="{% static "quotes/js/index.js" %}"></script>
-</head>
-
-<body>
+    <head>
+        <title>Quotes Page</title>
+        {% load staticfiles %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- CSS Link -->
+        <link rel="stylesheet" href="{% static 'quotes/css/index.css' %}" charset="utf-8"  />
+        <!-- jQuery Link -->
+        <script src="{% static "quotes/js/index.js" %}"></script>
+    </head>
+    <body>
 <!-- ===============    NAVBAR    ===================== -->
-
-    <div class="topnav" id="myTopnav">
-
-        <a class="navbar-brand" class="active"><h3 class="navbar-brand" class="active">Welcome, {{ user.name }}!</h3></a>
-
-        <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
-
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-
-    </div>
-
-    <div class="wrapper">
-
-
-<!--=================================================================================================-->
-<!--                                            QUOTABLE QUOTES                                      -->
-<!--=================================================================================================-->
-        <div class="topdiv">
-            <h3 id="quoteh3">Quotable Quotes</h3>
-
-            <!-- FOR EVERY QUOTE IN QUOTES -->
-            {% for quote in quotes %}
-
-                <!--DISPLAY AUTHOR AND THE QUOTE ITSELF-->
-                <h4>{{quote.quoted_by}}: {{quote.message}}</h4>
-    
-                <!--A LINK TO THE PERSON WHO POSTED-->
-                <p>Posted by: <a href='/quotes/showuser/{{quote.posted_by.id}}'>{{quote.posted_by.alias}}</a></p>
-
-    <!--++ ** LINK **  ADD TO FAVORITES // THIS FORM WILL PICK UP BY TH URL REGEX (r'^addfave/') ++++-->
-                <a href="/quotes/addfave/{{quote.id}}" style="color: red">Add to my Favorites</a><!-- SAME THING AS FORM BELOW  --> 
-                 <hr>
-
-            {% endfor %}<!-- END FOR EVERY QUOTE IN QUOTES -->
+        <div class="topnav" id="myTopnav">
+            <a class="navbar-brand" class="active"><h3 class="navbar-brand" class="active">Welcome, {{ user.name }}!</h3></a>
+            <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
-<!--====================================================================================================-->
-<!--                                      YOUR FAVORITES                                                -->
-<!--====================================================================================================-->
-        <div class="favquotes">
-            <h3>Your Favorites</h3>
-            <!--++++++++++++++  Add if statement   ++++++++++++++-->
-            {% if favorites.count == 0 %}
-                <h5>You don't have any favorite quotes, create one or add one!</h5>
-            {% endif %}
-
-
-            {% for quote in favorites %} 
-           
-            <h4>{{quote.quoted_by}}: {{quote.message}}</h4>
-            <hr>
-    <!-- THIS HREF WILL TAKE YOU TO THE URL (showuser/{{quote.posted_by.id}}) // REGEX IN URLS.PY WILL TAKE YOU TO THE USER.HTML  -->
-            <p>Posted by: <a href='/quotes/showuser/{{quote.posted_by.id}}'>{{quote.posted_by.alias}}</a></p>
-
-    <!-- ** BUTTON **    REMOVE FROM FAVORITES FORM  //  THIS FORM WILL PICK UP BY TH URL REGEX (r'^remfave/')  +++-->
-            <form action="/quotes/remfave/{{quote.id}}" method="POST">
-
-                {% csrf_token %}
-                <input type="hidden" name="quote_id" value="{{quote.id}}">
-                <button type="submit">Remove from Favorites</button>
-            </form>
-        {% endfor %}
-        </div>
-<!--=================================================================================================-->
-<!--                                 CONTRIBUTE A QUOTE                                              -->
-<!--=================================================================================================-->
-            <div class="create">
-                <h3>Contribute a Quote:</h3>
-                <form action="{% url 'create_quote' %}" class="myform" method="post">
-                    {% csrf_token %} Quoted By: <input type="text" name="quoted_by" />
-                    <p>Message: <textarea name="message" ></textarea></p>
-                    <button type="submit">Submit</button>
-                </form>
-    <!--==================================================================================================-->
-    <!--                            FLASH MESSAGES (ERRORS)                                               -->
-    <!--==================================================================================================-->
-                <div class="errors">
-                    {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
+        <div class="wrapper">
+            <div class="topdiv">
+                <h3 id="quoteh3">Quotable Quotes</h3>
+                <!-- FOR EVERY QUOTE IN QUOTES -->
+                {% for quote in quotes %}
+                    <!--DISPLAY AUTHOR AND THE QUOTE ITSELF-->
+                    <h4>{{quote.quoted_by}}: {{quote.message}}</h4>
+                    
+                    <!--A LINK TO THE PERSON WHO POSTED-->
+                    <p>Posted by:
+                        <i class="fa fa-user" style="font-size:20px;"></i>
+                        <a href='/quotes/showuser/{{quote.posted_by.id}}'>
+                        {{quote.posted_by.alias}}</a>
+                    </p>
+                    <!--++ ** LINK **  ADD TO FAVORITES // THIS FORM WILL PICK UP BY TH URL REGEX (r'^addfave/') ++++-->
+                    <a href="/quotes/addfave/{{quote.id}}" style="color: red">
+                        <i class="fa fa-heart" style="font-size:20px;"></i>
+                        Add to my Favorites
+                    </a><!-- SAME THING AS FORM BELOW  -->
+                    <hr>
+                    {% endfor %}<!-- END FOR EVERY QUOTE IN QUOTES -->
+                </div>
+                <div class="favquotes">
+                    <h3>Your Favorites</h3>
+                    <!--++++++++++++++  Add if statement   ++++++++++++++-->
+                    {% if favorites.count == 0 %}
+                        <h5>You don't have any favorite quotes, create one or add one!</h5>
                     {% endif %}
+                    {% for quote in favorites %}
+                        
+                        <h4>{{quote.quoted_by}}: {{quote.message}}</h4>
+                        <hr>
+    <!-- THIS HREF WILL TAKE YOU TO THE URL (showuser/{{quote.posted_by.id}}) // REGEX IN URLS.PY WILL TAKE YOU TO THE USER.HTML  -->
+                        <p><i class="fa fa-user" style="font-size:20px;"></i> Posted by:
+                            <a href='/quotes/showuser/{{quote.posted_by.id}}'>{{quote.posted_by.alias}}</a>
+                        </p>
+    <!-- ** BUTTON **    REMOVE FROM FAVORITES FORM  //  THIS FORM WILL PICK UP BY TH URL REGEX (r'^remfave/')  +++-->
+                        <form action="/quotes/remfave/{{quote.id}}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="quote_id" value="{{quote.id}}">
+                            <button type="submit">
+                                <i class="fa fa-remove" style="font-size:20px;"></i>
+                                Remove from Favorites
+                            </button>
+                        </form>
+                    {% endfor %}
+                </div>
+                <div class="create">
+                    <h3>Contribute a Quote:</h3>
+                    <form action="{% url 'create_quote' %}" class="myform" method="post">
+                        {% csrf_token %} Quoted By: <input type="text" name="quoted_by" />
+                        <p>Message: <textarea name="message" ></textarea></p>
+                        <button type="submit">Submit</button>
+                    </form>
+                    <div class="errors">
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-    </div>
-</body>
-</html>
+        </body>
+    </html>
